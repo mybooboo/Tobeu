@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="filename" content="index.html">
+    <title>TOBEU - 모던 가구 브랜드</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 90rem;
+            margin: 0 auto;
+            padding: 0 1.25rem;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 1.5rem 0;
+            box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #8B7355;
+            letter-spacing: 0.125rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #C4A484;
+        }
+
+        .user-icon {
+            font-size: 1.25rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 37.5rem;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1556909459-f3a8cc1ab962?ixlib=rb-4.0.3&auto=format&fit=crop&w=1440&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 50rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.875rem;
+            letter-spacing: 0.25rem;
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.875rem 2.5rem;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            text-decoration: none;
+            border-radius: 1.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #C4A484;
+            color: white;
+            transform: translateY(-0.125rem);
+        }
+
+        /* Hot Items Section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3.75rem;
+            letter-spacing: 0.125rem;
+            color: #333;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3.75rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            box-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-0.3125rem);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 15rem;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            margin-bottom: 0.625rem;
+            color: #666;
+        }
+
+        .product-price {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #C4A484;
+        }
+
+        /* New Product Section */
+        .new-product {
+            background: #F8F6F3;
+            padding: 5rem 0;
+        }
+
+        .new-product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.75rem;
+            align-items: center;
+        }
+
+        .new-product-image {
+            width: 100%;
+            height: 25rem;
+            object-fit: cover;
+            border-radius: 0.625rem;
+        }
+
+        .new-product-info h3 {
+            font-size: 0.875rem;
+            letter-spacing: 0.125rem;
+            color: #999;
+            margin-bottom: 1.25rem;
+        }
+
+        .new-product-info h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .new-product-info p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .view-more-btn {
+            display: inline-block;
+            padding: 0.875rem 2.5rem;
+            background: #C4A484;
+            color: white;
+            text-decoration: none;
+            border-radius: 1.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .view-more-btn:hover {
+            background: #8B7355;
+            transform: translateY(-0.125rem);
+        }
+
+        /* Best Product Section */
+        .best-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 2.5rem;
+        }
+
+        .best-product-card {
+            display: flex;
+            background: white;
+            border-radius: 0.625rem;
+            overflow: hidden;
+            box-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.1);
+        }
+
+        .best-product-image {
+            width: 10rem;
+            height: 8rem;
+            object-fit: cover;
+        }
+
+        .best-product-content {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .best-product-content h4 {
+            font-size: 1.125rem;
+            margin-bottom: 0.625rem;
+            color: #333;
+        }
+
+        .best-product-content p {
+            font-size: 0.875rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .product-tags {
+            display: flex;
+            gap: 0.625rem;
+        }
+
+        .tag {
+            background: #C4A484;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.9375rem;
+            font-size: 0.75rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2C2C2C;
+            color: white;
+            padding: 3.75rem 0 2.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-info h4 {
+            color: #C4A484;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-info p {
+            font-size: 0.875rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: flex-end;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #C4A484;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 0.0625rem solid #444;
+            color: #999;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 48rem) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .new-product-content {
+                grid-template-columns: 1fr;
+            }
+
+            .best-product-card {
+                flex-direction: column;
+            }
+
+            .best-product-image {
+                width: 100%;
+                height: 12.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">TOBEU</div>
+                <ul class="nav-links">
+                    <li><a href="about.html">브랜드 소개</a></li>
+                    <li><a href="product.html">제품 소개</a></li>
+                    <li><a href="#">리빙룸 스토리</a></li>
+                    <li><a href="#">베스트 제품</a></li>
+                    <li><a href="event.html">이벤트</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+                <i class="fas fa-user user-icon"></i>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Product</p>
+            <h1 class="hero-title">제품소개</h1>
+        </div>
+    </section>
+
+    <!-- 브랜드 소개 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">브랜드 소개</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="모던 원목 의자" class="product-image">
+                    <div class="product-info">
+                        <p class="product-name">토부 원목마루 안락의자</p>
+                        <p class="product-price">125,000원</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="라탄 의자" class="product-image">
+                    <div class="product-info">
+                        <p class="product-name">토부 라탄원목 안락의자 스몰</p>
+                        <p class="product-price">79,000원</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1549497538-303791108f95?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="화이트 의자" class="product-image">
+                    <div class="product-info">
+                        <p class="product-name">토부 화이트 플라스틱 의자 1개조</p>
+                        <p class="product-price">140,000원</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Product -->
+    <section class="new-product">
+        <div class="container">
+            <div class="new-product-content">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="새로운 제품" class="new-product-image">
+                <div class="new-product-info">
+                    <h3>TOBEU</h3>
+                    <h2>NEW PRODUCT</h2>
+                    <p>토부의 새로운 컬렉션이 출시되었습니다. 모던한 디자인과 뛰어난 품질을 갖춘 가구로 여러분의 공간을 더욱 특별하게 만들어 보세요. 친환경 소재를 사용하여 지속가능한 라이프스타일을 추구하는 현대인들을 위한 완벽한 선택입니다.</p>
+                    <a href="#" class="view-more-btn">VIEW MORE</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Product -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">BEST PRODUCT</h2>
+            <div class="best-products">
+                <div class="best-product-card">
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="모던 스툴" class="best-product-image">
+                    <div class="best-product-content">
+                        <h4>모던 스툴 원목</h4>
+                        <p>심플한 디자인과 편안함을 동시에 만족시키는 원목 스툴입니다. 다양한 공간에 어울리는 세련된 디자인으로 제작되었습니다.</p>
+                        <div class="product-tags">
+                            <span class="tag">원목</span>
+                            <span class="tag">모던</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="best-product-card">
+                    <img src="https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="라탄 체어" class="best-product-image">
+                    <div class="best-product-content">
+                        <h4>프리미엄 라탄 체어</h4>
+                        <p>자연스러운 라탄 소재로 제작된 프리미엄 체어입니다. 통기성이 뛰어나며 내구성 또한 우수한 친환경 가구입니다.</p>
+                        <div class="product-tags">
+                            <span class="tag">라탄</span>
+                            <span class="tag">친환경</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>TOBEU</h4>
+                    <p>토부는 현대적이고 실용적인 가구를 통해 더 나은 생활공간을 만들어갑니다. 고품질의 소재와 세련된 디자인으로 고객의 라이프스타일을 한 단계 업그레이드시켜드립니다.</p>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TOBEU. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
